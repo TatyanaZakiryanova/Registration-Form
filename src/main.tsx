@@ -7,6 +7,11 @@ const theme = createTheme({
   typography: {
     fontFamily: '"Poppins", "Arial", sans-serif',
   },
+  palette: {
+    text: {
+      primary: '#595975',
+    },
+  },
 });
 
 createRoot(document.getElementById('root')!).render(
