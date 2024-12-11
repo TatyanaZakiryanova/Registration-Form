@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { FormData } from './types';
-import { FormControl, TextField } from '@mui/material';
+import { Button, Checkbox, FormControl, FormControlLabel, TextField } from '@mui/material';
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -144,16 +144,23 @@ const RegistrationForm = () => {
           helperText={errors.confirmPassword}
         />
       </FormControl>
+      <FormControl fullWidth margin="normal">
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={formData.terms}
+              onChange={handleChange}
+              name="terms"
+              color="primary"
+            />
+          }
+          label="I agree to the terms and conditions"
+        />
+      </FormControl>
 
-      <div>
-        <label>
-          <input type="checkbox" name="terms" checked={formData.terms} onChange={handleChange} />I
-          agree to the terms and conditions
-        </label>
-        {errors.terms && <p>{errors.terms}</p>}
-      </div>
-
-      <button type="submit">Register</button>
+      <Button type="submit" variant="contained" color="primary">
+        Register
+      </Button>
     </form>
   );
 };
