@@ -4,7 +4,7 @@
 
 ## Deployment & Live Demo
 
-[Deploy](https://tatyanazakiryanova.github.io/Registration-Form/)
+[Deploy](https://tatyanazakiryanova.github.io/registration-form/)
 
 <img src='./src/assets/preview.png' alt="preview" />
 
