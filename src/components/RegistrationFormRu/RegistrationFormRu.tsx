@@ -1,6 +1,14 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { FormData } from "../types";
-import { Button, Checkbox, FormControl, FormControlLabel, TextField } from "@mui/material";
+import {
+  Alert,
+  Button,
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  Snackbar,
+  TextField,
+} from "@mui/material";
 
 export const RegistrationFormRu = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -14,6 +22,7 @@ export const RegistrationFormRu = () => {
   });
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
 
   const validate = () => {
     const newErrors: { [key: string]: string } = {};
@@ -65,102 +74,109 @@ export const RegistrationFormRu = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (validate()) {
-      alert("Форма успешно отправлена!");
+      setOpenSnackbar(true);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <FormControl fullWidth margin="normal">
-        <TextField
-          label="Имя пользователя"
-          id="username"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-          error={!!errors.username}
-          helperText={errors.username}
-        />
-      </FormControl>
+    <>
+      <form onSubmit={handleSubmit}>
+        <FormControl fullWidth margin="normal">
+          <TextField
+            label="Имя пользователя"
+            id="username"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            error={!!errors.username}
+            helperText={errors.username}
+          />
+        </FormControl>
 
-      <FormControl fullWidth margin="normal">
-        <TextField
-          label="Email"
-          name="email"
-          id="email"
-          value={formData.email}
-          onChange={handleChange}
-          error={!!errors.email}
-          helperText={errors.email}
-        />
-      </FormControl>
+        <FormControl fullWidth margin="normal">
+          <TextField
+            label="Email"
+            name="email"
+            id="email"
+            value={formData.email}
+            onChange={handleChange}
+            error={!!errors.email}
+            helperText={errors.email}
+          />
+        </FormControl>
 
-      <FormControl fullWidth margin="normal">
-        <TextField
-          label="Номер телефона"
-          name="phone"
-          id="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          error={!!errors.phone}
-          helperText={errors.phone}
-        />
-      </FormControl>
+        <FormControl fullWidth margin="normal">
+          <TextField
+            label="Номер телефона"
+            name="phone"
+            id="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            error={!!errors.phone}
+            helperText={errors.phone}
+          />
+        </FormControl>
 
-      <FormControl fullWidth margin="normal">
-        <TextField
-          type="date"
-          name="dob"
-          id="dob"
-          value={formData.dob}
-          onChange={handleChange}
-          error={!!errors.dob}
-          helperText={errors.dob}
-        />
-      </FormControl>
+        <FormControl fullWidth margin="normal">
+          <TextField
+            type="date"
+            name="dob"
+            id="dob"
+            value={formData.dob}
+            onChange={handleChange}
+            error={!!errors.dob}
+            helperText={errors.dob}
+          />
+        </FormControl>
 
-      <FormControl fullWidth margin="normal">
-        <TextField
-          label="Пароль"
-          type="password"
-          name="password"
-          id="password"
-          value={formData.password}
-          onChange={handleChange}
-          error={!!errors.password}
-          helperText={errors.password}
-        />
-      </FormControl>
+        <FormControl fullWidth margin="normal">
+          <TextField
+            label="Пароль"
+            type="password"
+            name="password"
+            id="password"
+            value={formData.password}
+            onChange={handleChange}
+            error={!!errors.password}
+            helperText={errors.password}
+          />
+        </FormControl>
 
-      <FormControl fullWidth margin="normal">
-        <TextField
-          label="Подтвердите пароль"
-          type="password"
-          name="confirmPassword"
-          id="confirmPassword"
-          value={formData.confirmPassword}
-          onChange={handleChange}
-          error={!!errors.confirmPassword}
-          helperText={errors.confirmPassword}
-        />
-      </FormControl>
-      <FormControl fullWidth margin="normal">
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={formData.terms}
-              onChange={handleChange}
-              name="terms"
-              color="primary"
-            />
-          }
-          label="Я согласен с условиями"
-        />
-      </FormControl>
+        <FormControl fullWidth margin="normal">
+          <TextField
+            label="Подтвердите пароль"
+            type="password"
+            name="confirmPassword"
+            id="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            error={!!errors.confirmPassword}
+            helperText={errors.confirmPassword}
+          />
+        </FormControl>
+        <FormControl fullWidth margin="normal">
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={formData.terms}
+                onChange={handleChange}
+                name="terms"
+                color="primary"
+              />
+            }
+            label="Я согласен с условиями"
+          />
+        </FormControl>
 
-      <Button type="submit" variant="contained" color="primary">
-        Зарегистрироваться
-      </Button>
-    </form>
+        <Button type="submit" variant="contained" color="primary">
+          Зарегистрироваться
+        </Button>
+      </form>
+      <Snackbar open={openSnackbar} autoHideDuration={3000} onClose={() => setOpenSnackbar(false)}>
+        <Alert severity="success" onClose={() => setOpenSnackbar(false)}>
+          Форма успешно отправлена!
+        </Alert>
+      </Snackbar>
+    </>
   );
 };
