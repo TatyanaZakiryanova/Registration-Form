@@ -1,0 +1,1 @@
+export { RegistrationFormRu } from "./RegistrationFormRu";

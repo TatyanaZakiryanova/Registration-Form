@@ -1,7 +1,7 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import App from './App';
-import { createTheme, ThemeProvider } from '@mui/material';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App";
+import { createTheme, ThemeProvider } from "@mui/material";
 
 const theme = createTheme({
   typography: {
@@ -9,12 +9,12 @@ const theme = createTheme({
   },
   palette: {
     text: {
-      primary: '#595975',
+      primary: "#595975",
     },
   },
 });
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider theme={theme}>
       <App />

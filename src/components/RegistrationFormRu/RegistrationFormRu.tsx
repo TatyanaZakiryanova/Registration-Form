@@ -1,15 +1,15 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
-import { FormData } from './types';
-import { Button, Checkbox, FormControl, FormControlLabel, TextField } from '@mui/material';
+import { ChangeEvent, FormEvent, useState } from "react";
+import { FormData } from "../types";
+import { Button, Checkbox, FormControl, FormControlLabel, TextField } from "@mui/material";
 
-const RegistrationForm = () => {
+export const RegistrationFormRu = () => {
   const [formData, setFormData] = useState<FormData>({
-    username: '',
-    email: '',
-    phone: '',
-    dob: '',
-    password: '',
-    confirmPassword: '',
+    username: "",
+    email: "",
+    phone: "",
+    dob: "",
+    password: "",
+    confirmPassword: "",
     terms: false,
   });
 
@@ -19,38 +19,38 @@ const RegistrationForm = () => {
     const newErrors: { [key: string]: string } = {};
 
     if (!formData.username.trim()) {
-      newErrors.username = 'Username is required';
+      newErrors.username = "Имя пользователя обязательно";
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = "Электронная почта обязательна";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Invalid email format';
+      newErrors.email = "Неверный формат электронной почты";
     }
 
     if (!formData.phone.trim()) {
-      newErrors.phone = 'Phone number is required';
+      newErrors.phone = "Номер телефона обязателен";
     } else if (!/^\+?[1-9]\d{1,14}$/.test(formData.phone)) {
-      newErrors.phone = 'Invalid phone number format';
+      newErrors.phone = "Неверный формат номера телефона";
     }
 
     if (!formData.dob.trim()) {
-      newErrors.dob = 'Date of birth is required';
+      newErrors.dob = "Дата рождения обязательна";
     }
 
     if (!formData.password) {
-      newErrors.password = 'Password is required';
+      newErrors.password = "Пароль обязателен";
     } else if (!/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,20}$/.test(formData.password)) {
       newErrors.password =
-        'Password must be between 6 and 20 characters and contain at least one capital letter and a number';
+        "Пароль должен быть от 6 до 20 символов и содержать хотя бы одну заглавную букву и цифру";
     }
 
     if (formData.password && formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = 'Passwords do not match';
+      newErrors.confirmPassword = "Пароли не совпадают";
     }
 
     if (!formData.terms) {
-      newErrors.terms = 'You must agree to the terms and conditions';
+      newErrors.terms = "Вы должны согласиться с условиями";
     }
 
     setErrors(newErrors);
@@ -59,13 +59,13 @@ const RegistrationForm = () => {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
+    setFormData((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
   };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (validate()) {
-      alert('Form submitted successfully!');
+      alert("Форма успешно отправлена!");
     }
   };
 
@@ -73,7 +73,7 @@ const RegistrationForm = () => {
     <form onSubmit={handleSubmit}>
       <FormControl fullWidth margin="normal">
         <TextField
-          label="Username"
+          label="Имя пользователя"
           id="username"
           name="username"
           value={formData.username}
@@ -97,7 +97,7 @@ const RegistrationForm = () => {
 
       <FormControl fullWidth margin="normal">
         <TextField
-          label="Phone"
+          label="Номер телефона"
           name="phone"
           id="phone"
           value={formData.phone}
@@ -121,7 +121,7 @@ const RegistrationForm = () => {
 
       <FormControl fullWidth margin="normal">
         <TextField
-          label="Password"
+          label="Пароль"
           type="password"
           name="password"
           id="password"
@@ -134,7 +134,7 @@ const RegistrationForm = () => {
 
       <FormControl fullWidth margin="normal">
         <TextField
-          label="Confirm Password"
+          label="Подтвердите пароль"
           type="password"
           name="confirmPassword"
           id="confirmPassword"
@@ -154,15 +154,13 @@ const RegistrationForm = () => {
               color="primary"
             />
           }
-          label="I agree to the terms and conditions"
+          label="Я согласен с условиями"
         />
       </FormControl>
 
       <Button type="submit" variant="contained" color="primary">
-        Register
+        Зарегистрироваться
       </Button>
     </form>
   );
 };
-
-export default RegistrationForm;
