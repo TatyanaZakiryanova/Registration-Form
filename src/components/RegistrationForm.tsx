@@ -1,14 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
-
-interface FormData {
-  username: string;
-  email: string;
-  phone: string;
-  dob: string;
-  password: string;
-  confirmPassword: string;
-  terms: boolean;
-}
+import { FormData } from './types';
+import { FormControl, TextField } from '@mui/material';
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -79,67 +71,79 @@ const RegistrationForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
+      <FormControl fullWidth margin="normal">
+        <TextField
+          label="Username"
           id="username"
           name="username"
           value={formData.username}
           onChange={handleChange}
+          error={!!errors.username}
+          helperText={errors.username}
         />
-        {errors.username && <p>{errors.username}</p>}
-      </div>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
+      </FormControl>
+
+      <FormControl fullWidth margin="normal">
+        <TextField
+          label="Email"
           name="email"
           id="email"
           value={formData.email}
           onChange={handleChange}
-          className="w-full border p-2"
+          error={!!errors.email}
+          helperText={errors.email}
         />
-        {errors.email && <p>{errors.email}</p>}
-      </div>
+      </FormControl>
 
-      <div>
-        <label htmlFor="phone">Phone</label>
-        <input type="tel" name="phone" id="phone" value={formData.phone} onChange={handleChange} />
-        {errors.phone && <p>{errors.phone}</p>}
-      </div>
+      <FormControl fullWidth margin="normal">
+        <TextField
+          label="Phone"
+          name="phone"
+          id="phone"
+          value={formData.phone}
+          onChange={handleChange}
+          error={!!errors.phone}
+          helperText={errors.phone}
+        />
+      </FormControl>
 
-      <div>
-        <label htmlFor="dob">Date of Birth</label>
-        <input type="date" name="dob" id="dob" value={formData.dob} onChange={handleChange} />
-        {errors.dob && <p>{errors.dob}</p>}
-      </div>
+      <FormControl fullWidth margin="normal">
+        <TextField
+          type="date"
+          name="dob"
+          id="dob"
+          value={formData.dob}
+          onChange={handleChange}
+          error={!!errors.dob}
+          helperText={errors.dob}
+        />
+      </FormControl>
 
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
+      <FormControl fullWidth margin="normal">
+        <TextField
+          label="Password"
           type="password"
           name="password"
           id="password"
           value={formData.password}
           onChange={handleChange}
-          className="w-full border p-2"
+          error={!!errors.password}
+          helperText={errors.password}
         />
-        {errors.password && <p>{errors.password}</p>}
-      </div>
+      </FormControl>
 
-      <div>
-        <label htmlFor="confirmPassword">Confirm Password</label>
-        <input
+      <FormControl fullWidth margin="normal">
+        <TextField
+          label="Confirm Password"
           type="password"
           name="confirmPassword"
           id="confirmPassword"
           value={formData.confirmPassword}
           onChange={handleChange}
-          className="w-full border p-2"
+          error={!!errors.confirmPassword}
+          helperText={errors.confirmPassword}
         />
-        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-      </div>
+      </FormControl>
 
       <div>
         <label>
