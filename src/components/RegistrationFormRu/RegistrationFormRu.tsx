@@ -154,6 +154,7 @@ export const RegistrationFormRu = () => {
             helperText={errors.confirmPassword}
           />
         </FormControl>
+
         <FormControl fullWidth margin="normal">
           <FormControlLabel
             control={
@@ -172,6 +173,7 @@ export const RegistrationFormRu = () => {
           Зарегистрироваться
         </Button>
       </form>
+
       <Snackbar open={openSnackbar} autoHideDuration={3000} onClose={() => setOpenSnackbar(false)}>
         <Alert severity="success" onClose={() => setOpenSnackbar(false)}>
           Форма успешно отправлена!
