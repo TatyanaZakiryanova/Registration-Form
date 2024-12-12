@@ -6,7 +6,7 @@
 
 [Deploy](https://tatyanazakiryanova.github.io/registration-form/)
 
-<img src='./src/assets/preview.png' alt="preview" />
+<img src='./src/assets/formPreview.png' alt="preview" />
 
 ## Technologies Used
 

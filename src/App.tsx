@@ -4,7 +4,7 @@ import { useState } from "react";
 import { RegistrationFormRu } from "./components/RegistrationFormRu";
 
 const App = () => {
-  const [language, setLanguage] = useState<"en" | "ru">("en");
+  const [language, setLanguage] = useState<"en" | "ru">("ru");
   return (
     <Typography>
       <Card
@@ -24,11 +24,16 @@ const App = () => {
           onClick={() => setLanguage("en")}
           variant="outlined"
           color="primary"
-          sx={{ margin: "10px" }}
+          sx={{ margin: "10px", fontSize: "10px" }}
         >
           English
         </Button>
-        <Button onClick={() => setLanguage("ru")} variant="outlined" color="primary">
+        <Button
+          onClick={() => setLanguage("ru")}
+          variant="outlined"
+          color="primary"
+          sx={{ fontSize: "10px" }}
+        >
           Русский
         </Button>
         {language === "en" ? <RegistrationFormEng /> : <RegistrationFormRu />}
