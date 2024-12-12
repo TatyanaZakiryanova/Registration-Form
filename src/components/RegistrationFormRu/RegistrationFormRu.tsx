@@ -1,5 +1,4 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { FormData } from "../types";
 import {
   Alert,
   Button,
@@ -9,6 +8,7 @@ import {
   Snackbar,
   TextField,
 } from "@mui/material";
+import { FormData } from "../types";
 
 export const RegistrationFormRu = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -56,10 +56,6 @@ export const RegistrationFormRu = () => {
 
     if (formData.password && formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = "Пароли не совпадают";
-    }
-
-    if (!formData.terms) {
-      newErrors.terms = "Вы должны согласиться с условиями";
     }
 
     setErrors(newErrors);
@@ -163,13 +159,14 @@ export const RegistrationFormRu = () => {
                 onChange={handleChange}
                 name="terms"
                 color="primary"
+                required
               />
             }
             label="Я согласен с условиями"
           />
         </FormControl>
 
-        <Button type="submit" variant="contained" color="primary">
+        <Button type="submit" variant="contained" color="primary" disabled={!formData.terms}>
           Зарегистрироваться
         </Button>
       </form>

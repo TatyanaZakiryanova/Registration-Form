@@ -57,10 +57,6 @@ export const RegistrationFormEng = () => {
       newErrors.confirmPassword = "Passwords do not match";
     }
 
-    if (!formData.terms) {
-      newErrors.terms = "You must agree to the terms and conditions";
-    }
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0; //вернёт true, если валидация прошла
   };
@@ -154,7 +150,7 @@ export const RegistrationFormEng = () => {
           />
         </FormControl>
 
-        <FormControl fullWidth margin="normal">
+        <FormControl fullWidth margin="normal" error={!!errors.terms}>
           <FormControlLabel
             control={
               <Checkbox
@@ -162,13 +158,14 @@ export const RegistrationFormEng = () => {
                 onChange={handleChange}
                 name="terms"
                 color="primary"
+                required
               />
             }
             label="I agree to the terms and conditions"
           />
         </FormControl>
 
-        <Button type="submit" variant="contained" color="primary">
+        <Button type="submit" variant="contained" color="primary" disabled={!formData.terms}>
           Register
         </Button>
       </form>
