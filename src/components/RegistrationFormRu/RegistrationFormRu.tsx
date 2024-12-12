@@ -8,6 +8,12 @@ import {
   Snackbar,
   TextField,
 } from "@mui/material";
+
+import { DatePicker } from "@mui/x-date-pickers/DatePicker/DatePicker";
+import dayjs, { Dayjs } from "dayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs/AdapterDayjs";
+
 import { FormData } from "../types";
 
 export const RegistrationFormRu = () => {
@@ -15,7 +21,7 @@ export const RegistrationFormRu = () => {
     username: "",
     email: "",
     phone: "",
-    dob: "",
+    dob: dayjs(dayjs()),
     password: "",
     confirmPassword: "",
     terms: false,
@@ -43,10 +49,6 @@ export const RegistrationFormRu = () => {
       newErrors.phone = "Неверный формат номера телефона";
     }
 
-    if (!formData.dob.trim()) {
-      newErrors.dob = "Дата рождения обязательна";
-    }
-
     if (!formData.password) {
       newErrors.password = "Пароль обязателен";
     } else if (!/^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,20}$/.test(formData.password)) {
@@ -67,6 +69,10 @@ export const RegistrationFormRu = () => {
     setFormData((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
   };
 
+  const handleDateChange = (newValue: Dayjs | null) => {
+    setFormData((prev) => ({ ...prev, dob: newValue }));
+  };
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (validate()) {
@@ -75,7 +81,7 @@ export const RegistrationFormRu = () => {
   };
 
   return (
-    <>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
       <form onSubmit={handleSubmit}>
         <FormControl fullWidth margin="normal">
           <TextField
@@ -114,15 +120,7 @@ export const RegistrationFormRu = () => {
         </FormControl>
 
         <FormControl fullWidth margin="normal">
-          <TextField
-            type="date"
-            name="dob"
-            id="dob"
-            value={formData.dob}
-            onChange={handleChange}
-            error={!!errors.dob}
-            helperText={errors.dob}
-          />
+          <DatePicker label="Дата рождения" value={formData.dob} onChange={handleDateChange} />
         </FormControl>
 
         <FormControl fullWidth margin="normal">
@@ -176,6 +174,6 @@ export const RegistrationFormRu = () => {
           Форма успешно отправлена!
         </Alert>
       </Snackbar>
-    </>
+    </LocalizationProvider>
   );
 };
