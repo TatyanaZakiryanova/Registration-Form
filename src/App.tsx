@@ -9,22 +9,28 @@ const App = () => {
     <Typography>
       <Card
         sx={{
-          maxWidth: 400,
+          width: {
+            md: 500,
+          },
           padding: 5,
-          margin: 5,
+          margin: {
+            xs: 2,
+            sm: 2,
+            md: 5,
+          },
           boxShadow: 3,
           borderRadius: "15px",
           textAlign: "center",
         }}
       >
         <Typography variant="h5" component="h1">
-          Registration Form
+          Registration form
         </Typography>
         <Button
           onClick={() => setLanguage("en")}
           variant="outlined"
           color="primary"
-          sx={{ margin: "10px", fontSize: "10px" }}
+          sx={{ marginY: "18px", marginX: "15px", fontSize: "10px" }}
         >
           English
         </Button>

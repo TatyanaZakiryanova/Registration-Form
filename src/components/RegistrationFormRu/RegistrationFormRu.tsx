@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import {
   Alert,
+  Box,
   Button,
   Checkbox,
   FormControl,
@@ -83,90 +84,92 @@ export const RegistrationFormRu = () => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <form onSubmit={handleSubmit}>
-        <FormControl fullWidth margin="normal">
-          <TextField
-            label="Имя пользователя"
-            id="username"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            error={!!errors.username}
-            helperText={errors.username}
-          />
-        </FormControl>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+          <FormControl fullWidth>
+            <TextField
+              label="Имя пользователя"
+              id="username"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              error={!!errors.username}
+              helperText={errors.username}
+            />
+          </FormControl>
 
-        <FormControl fullWidth margin="normal">
-          <TextField
-            label="Email"
-            name="email"
-            id="email"
-            value={formData.email}
-            onChange={handleChange}
-            error={!!errors.email}
-            helperText={errors.email}
-          />
-        </FormControl>
+          <FormControl fullWidth>
+            <TextField
+              label="Email"
+              name="email"
+              id="email"
+              value={formData.email}
+              onChange={handleChange}
+              error={!!errors.email}
+              helperText={errors.email}
+            />
+          </FormControl>
 
-        <FormControl fullWidth margin="normal">
-          <TextField
-            label="Номер телефона"
-            name="phone"
-            id="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            error={!!errors.phone}
-            helperText={errors.phone}
-          />
-        </FormControl>
+          <FormControl fullWidth>
+            <TextField
+              label="Номер телефона"
+              name="phone"
+              id="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              error={!!errors.phone}
+              helperText={errors.phone}
+            />
+          </FormControl>
 
-        <FormControl fullWidth margin="normal">
-          <DatePicker label="Дата рождения" value={formData.dob} onChange={handleDateChange} />
-        </FormControl>
+          <FormControl fullWidth>
+            <DatePicker label="Дата рождения" value={formData.dob} onChange={handleDateChange} />
+          </FormControl>
 
-        <FormControl fullWidth margin="normal">
-          <TextField
-            label="Пароль"
-            type="password"
-            name="password"
-            id="password"
-            value={formData.password}
-            onChange={handleChange}
-            error={!!errors.password}
-            helperText={errors.password}
-          />
-        </FormControl>
+          <FormControl fullWidth>
+            <TextField
+              label="Пароль"
+              type="password"
+              name="password"
+              id="password"
+              value={formData.password}
+              onChange={handleChange}
+              error={!!errors.password}
+              helperText={errors.password}
+            />
+          </FormControl>
 
-        <FormControl fullWidth margin="normal">
-          <TextField
-            label="Подтвердите пароль"
-            type="password"
-            name="confirmPassword"
-            id="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            error={!!errors.confirmPassword}
-            helperText={errors.confirmPassword}
-          />
-        </FormControl>
+          <FormControl fullWidth>
+            <TextField
+              label="Подтвердите пароль"
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              error={!!errors.confirmPassword}
+              helperText={errors.confirmPassword}
+            />
+          </FormControl>
 
-        <FormControl fullWidth margin="normal">
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={formData.terms}
-                onChange={handleChange}
-                name="terms"
-                color="primary"
-                required
-              />
-            }
-            label="Я согласен с условиями"
-          />
-        </FormControl>
+          <FormControl fullWidth>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={formData.terms}
+                  onChange={handleChange}
+                  name="terms"
+                  color="primary"
+                  required
+                />
+              }
+              label="Я согласен с условиями"
+            />
+          </FormControl>
 
-        <Button type="submit" variant="contained" color="primary" disabled={!formData.terms}>
-          Зарегистрироваться
-        </Button>
+          <Button type="submit" variant="contained" color="primary" disabled={!formData.terms}>
+            Зарегистрироваться
+          </Button>
+        </Box>
       </form>
 
       <Snackbar open={openSnackbar} autoHideDuration={3000} onClose={() => setOpenSnackbar(false)}>
